@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true leoviken/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-west-1'
+  app: 'docker-react-course'
+  env: 'DockerReactCourse-env'
+  bucket_name: 'elasticbeanstalk-eu-west-1-468044472733'
+  bucket_path: 'docker-react-course'
+  on:
+    branch: master
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY
